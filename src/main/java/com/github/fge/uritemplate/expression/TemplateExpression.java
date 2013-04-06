@@ -80,6 +80,18 @@ public final class TemplateExpression
     }
 
     @Override
+    public String getPrefix()
+    {
+        return expressionType.getPrefix();
+    }
+
+    @Override
+    public List<VariableSpec> getVariableSpecs()
+    {
+        return variableSpecs;
+    }
+
+    @Override
     public int hashCode()
     {
         return 31 * expressionType.hashCode() + variableSpecs.hashCode();
