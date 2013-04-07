@@ -17,21 +17,19 @@
 
 package com.github.fge.uritemplate.render;
 
-import com.github.fge.uritemplate.expression.URITemplateExpression;
-
-public final class LiteralRenderer
+public final class Level1Renderer
     extends Renderer
 {
-    private final String literal;
+    private final String expanded;
 
-    public LiteralRenderer(final URITemplateExpression expression)
+    public Level1Renderer(final String value)
     {
-        literal = expression.getLiteral();
+        expanded = expandString(value, CharMatchers.UNRESERVED);
     }
 
     @Override
     public String render()
     {
-        return literal;
+        return expanded;
     }
 }

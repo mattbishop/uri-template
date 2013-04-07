@@ -12,9 +12,9 @@ public interface URITemplateExpression
     String expand(final Map<String, VariableValue> vars)
         throws URITemplateException;
 
-    ExpressionType getExpressionType();
+    String getLiteral();
 
-    String getPrefix();
+    ExpressionType getExpressionType();
 
     List<VariableSpec> getVariableSpecs();
 }

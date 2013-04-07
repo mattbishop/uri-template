@@ -17,24 +17,34 @@
 
 package com.github.fge.uritemplate.render;
 
-import com.github.fge.uritemplate.expression.URITemplateExpression;
-import com.github.fge.uritemplate.vars.values.VariableValue;
-import com.google.common.collect.ImmutableMap;
+import com.google.common.base.CharMatcher;
+import com.google.common.primitives.UnsignedBytes;
 
-import java.util.Map;
+import java.nio.charset.Charset;
 
 public abstract class Renderer
 {
-    protected final URITemplateExpression expression;
-    protected final Map<String, VariableValue> vars;
+    public abstract String render();
 
-    protected Renderer(final URITemplateExpression expression,
-        final Map<String, VariableValue> vars)
+    protected static String expandString(final String s,
+        final CharMatcher matcher)
     {
-        this.expression = expression;
-        this.vars = ImmutableMap.copyOf(vars);
+        final StringBuilder sb = new StringBuilder(s.length());
+
+        for (final char c: s.toCharArray())
+            sb.append(matcher.matches(c) ? c : percentEncode(c));
+
+        return sb.toString();
     }
 
-    public abstract String render();
+    private static String percentEncode(final char c)
+    {
+        final String tmp = new String(new char[] { c });
+        final byte[] bytes = tmp.getBytes(Charset.forName("UTF-8"));
+        final StringBuilder sb = new StringBuilder();
+        for (final byte b: bytes)
+            sb.append('%').append(UnsignedBytes.toString(b, 16));
+        return sb.toString();
+    }
 }
 

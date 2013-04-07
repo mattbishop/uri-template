@@ -80,15 +80,15 @@ public final class TemplateExpression
     }
 
     @Override
-    public ExpressionType getExpressionType()
+    public String getLiteral()
     {
-        return expressionType;
+        return null;
     }
 
     @Override
-    public String getPrefix()
+    public ExpressionType getExpressionType()
     {
-        return expressionType.getPrefix();
+        return expressionType;
     }
 
     @Override
