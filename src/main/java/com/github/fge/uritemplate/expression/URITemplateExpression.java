@@ -12,6 +12,8 @@ public interface URITemplateExpression
     String expand(final Map<String, VariableValue> vars)
         throws URITemplateException;
 
+    ExpressionType getExpressionType();
+
     String getPrefix();
 
     List<VariableSpec> getVariableSpecs();

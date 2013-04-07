@@ -24,6 +24,12 @@ public final class TemplateLiteral
     }
 
     @Override
+    public ExpressionType getExpressionType()
+    {
+        return null;
+    }
+
+    @Override
     public String getPrefix()
     {
         return literal;

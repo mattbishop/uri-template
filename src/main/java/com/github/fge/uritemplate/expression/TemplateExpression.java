@@ -80,6 +80,12 @@ public final class TemplateExpression
     }
 
     @Override
+    public ExpressionType getExpressionType()
+    {
+        return expressionType;
+    }
+
+    @Override
     public String getPrefix()
     {
         return expressionType.getPrefix();
